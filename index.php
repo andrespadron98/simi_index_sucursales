@@ -4,7 +4,7 @@
 //schtasks /create /tn "ActualizarScriptSimi" /tr "C:\xampp\htdocs\pull.sh" /sc minute /mo 1
 
 //INICIO DEL SCRIPT
-$config = include('/config.php');
+$config = include('/config/config.php');
 
 $idSucursal = $config['idSucursal'];
 $url = $config['url'];
