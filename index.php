@@ -1,8 +1,7 @@
 <?php
-
+//TAREAS PARA WINDOWS
 //schtasks /create /tn "InsertarDatosSimiData" /tr "C:\xampp\php\php-win.exe C:\xampp\htdocs\index.php" /sc minute /mo 1
 //schtasks /create /tn "ActualizarScriptSimi" /tr "C:\xampp\htdocs\pull.sh" /sc minute /mo 1
-//TAREAS PARA WINDOWS
 
 //INICIO DEL SCRIPT
 $config = include('/config.php');
