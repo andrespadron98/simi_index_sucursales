@@ -12,6 +12,7 @@ if( $conn ) {
 
 $sql_exportar = "";
 
+
 //Empaques_Pedidos
 $sql = "SELECT * FROM Empaques_Pedidos ORDER BY Id_Pedido ASC";
 $stmt = sqlsrv_query( $conn, $sql );
