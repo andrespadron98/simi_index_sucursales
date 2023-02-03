@@ -21,7 +21,6 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 }
 //Fin de Empaque_Pedidos
 
-
 // //Pedido_Detalle
 // $sql = "SELECT * FROM Pedido_Detalle ORDER BY Id_Pedido ASC";
 // $stmt = sqlsrv_query( $conn, $sql );
