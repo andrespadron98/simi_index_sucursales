@@ -23,4 +23,6 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 //Fin de Pedido Detalle
 
 
-file_put_contents("exportaciones/bbdd.sql", $sql);
+$myfile = fopen("exportaciones/bbdd.sql", "w") or die("Unable to open file!");
+fwrite($myfile, $sql);
+fclose($myfile);
