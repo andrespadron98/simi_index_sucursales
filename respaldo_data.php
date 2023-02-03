@@ -12,14 +12,14 @@ if( $conn ) {
 
 $sql_exportar = "";
 
-// //Empaque_Pedidos
-// $sql = "SELECT * FROM Empaques_Pedidos ORDER BY Id_Pedido ASC";
-// $stmt = sqlsrv_query( $conn, $sql );
+//Empaques_Pedidos
+$sql = "SELECT * FROM Empaques_Pedidos ORDER BY Id_Pedido ASC";
+$stmt = sqlsrv_query( $conn, $sql );
 
-// while ($row = sqlsrv_fetch_object( $stmt)) {
-//     $sql_exportar .= "INSERT INTO `Empaques_Pedidos`(`Id_Pedido`, `Producto`, `Unidades_Empaque`, `Empaque_Pedido`) VALUES ('$row->Id_Pedido', '$row->Producto', '$row->Unidades_Empaque', '$row->Empaque_Pedido');\n";
-// }
-// //Fin de Empaque_Pedidos
+while ($row = sqlsrv_fetch_object( $stmt)) {
+    $sql_exportar .= "INSERT INTO `Empaques_Pedidos`(`Id_Pedido`, `Producto`, `Unidades_Empaque`, `Empaque_Pedido`) VALUES ('$row->Id_Pedido', '$row->Producto', '$row->Unidades_Empaque', '$row->Empaque_Pedido');\n";
+}
+//Fin de Empaques_Pedidos
 
 //Pedido_Detalle
 $sql = "SELECT * FROM Pedido_Detalle ORDER BY Id_Pedido ASC";
