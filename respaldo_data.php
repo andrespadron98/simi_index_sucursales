@@ -1,4 +1,6 @@
 <?php
+ini_set('memory_limit', '-1');
+
 $config = include('config/config.php');
 $connectionInfo = array( "Database"=> $config['bbddSposaa'], "UID"=> $config['userSposaa'], "PWD"=> $config['claveSposaa']);
 $conn = sqlsrv_connect($config['hostSposaa'], $connectionInfo);
