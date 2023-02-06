@@ -180,6 +180,7 @@ $sql = "SELECT * FROM Inventario";
 $stmt = sqlsrv_query( $conn, $sql );
 
 while ($row = sqlsrv_fetch_object( $stmt)) {
+    $row->Fecha_Modificacion = $row->Fecha_Modificacion->format('Y-m-d H:i:s');
     $sql_exportar .= "INSERT INTO `Inventario`(`Id_Producto`, `Existencia`, `NoDisponible`, `Fecha_Modificacion`) VALUES ('$row->Id_Producto','$row->Existencia','$row->NoDisponible','$row->Fecha_Modificacion');\n";
 }
 //Fin de Inventario
