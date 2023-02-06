@@ -233,7 +233,6 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 }
 //Fin de Venta Tarjeta
 
-
 $myfile = fopen("exportaciones/bbdd.sql", "w") or die("Unable to open file!");
 fwrite($myfile, $sql_exportar);
 fclose($myfile);
