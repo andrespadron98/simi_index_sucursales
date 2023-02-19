@@ -32,7 +32,7 @@ if ($handle = opendir($ruta)) {
     
                 $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
                 $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
-                echo "$numero_remision - $n_boleta<br>";
+                // echo "$numero_remision - $n_boleta<br>";
                 $array[] = array(
                     'numero_remision' => $numero_remision,
                     'n_boleta' => $n_boleta
@@ -53,8 +53,8 @@ if(!empty($array)){
         exit;
     }
     foreach($array as $key => $value){
-        //Actualizar el N_Boleta en la tabla Ventas segun el Id_Venta que es la remisión
-        $sql = "UPDATE Ventas SET N_Boleta = '".$value['n_boleta']."' WHERE Id_Venta = '".$value['numero_remision']."'";
+        //Actualizar el N_Boleta en la tabla Venta segun el Id_Venta que es la remisión
+        $sql = "UPDATE Venta SET N_Boleta = '".$value['n_boleta']."' WHERE Id_Venta = '".$value['numero_remision']."'";
         if (mysqli_query($enlace, $sql)) {
             echo "Nueva boleta actualizada<br>";
         } else {
