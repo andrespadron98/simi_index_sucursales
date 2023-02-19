@@ -36,6 +36,7 @@ if ($handle = opendir($ruta)) {
                     $n_boleta = explode(".", $n_boleta[2]);
                     $n_boleta = $n_boleta[0];
                     $n_boleta = str_replace("F", "", $n_boleta);
+                    $n_boleta = intval($n_boleta);
                     echo "$n_boleta<br>";
 
 
