@@ -19,7 +19,7 @@ function buscar_texto_entre($texto, $inicio, $termino){
 if ($handle = opendir($ruta)) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
-            //Verificar que los archivos sean pdf y no tengan mas de 5 días de antiguedad
+            //Verificar que los archivos no tengan mas de 15 días de antiguedad
             $fecha_archivo = date("Y-m-d", filemtime($ruta.'\\'.$entry));
             $fecha_actual = date("Y-m-d");
             $fecha_archivo = strtotime($fecha_archivo);
@@ -27,16 +27,20 @@ if ($handle = opendir($ruta)) {
             $diferencia = $fecha_actual - $fecha_archivo;
             $dias = floor($diferencia / (60 * 60 * 24));
             if($dias <= 15){
-                $pdf = $parser->parseFile($ruta.'\\'.$entry);
-                $text = $pdf->getText();
-    
-                $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
-                $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
-                // echo "$numero_remision - $n_boleta<br>";
-                $array[] = array(
-                    'numero_remision' => $numero_remision,
-                    'n_boleta' => $n_boleta
-                );
+                //Verificar que los archivos sean .pdf
+                $extension = pathinfo($entry, PATHINFO_EXTENSION);
+                if($extension == 'pdf'){
+                    $pdf = $parser->parseFile($ruta.'\\'.$entry);
+                    $text = $pdf->getText();
+        
+                    $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
+                    $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
+                    // echo "$numero_remision - $n_boleta<br>";
+                    $array[] = array(
+                        'numero_remision' => $numero_remision,
+                        'n_boleta' => $n_boleta
+                    );
+                }
             }
         }
     }
