@@ -18,8 +18,6 @@ if(file_exists('ultima_be.txt')){
     $ultima_boleta = 0;
 }
 
-
-
 function buscar_texto_entre($texto, $inicio, $termino){
     $texto = ' ' . $texto;
     $ini = strpos($texto, $inicio);
@@ -54,6 +52,7 @@ if ($handle = opendir($ruta)) {
 
                     //Verificar que el folio de la boleta sea mayor al ultimo folio registrado
                     if($n_boleta > $ultima_boleta){
+                        echo "$n_boleta - $ultima_boleta\n";
                         //Actualizar el archivo ultima_be.txt con el nuevo folio de la boleta
                         $archivo = fopen("ultima_be.txt", "w");
                         fwrite($archivo, $n_boleta);
