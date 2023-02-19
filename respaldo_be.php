@@ -5,6 +5,11 @@ $config = include('config/config.php');
 $ruta = "C:\AceptaService\simi_prod\pdf";
 $parser = new \Smalot\PdfParser\Parser();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('max_execution_time', '0');
+error_reporting(E_ALL);
+
 //Revisar si existe y Leer la ultima boleta del archivo ultima_be.txt
 if(file_exists('ultima_be.txt')){
     $archivo = fopen("ultima_be.txt", "r");
