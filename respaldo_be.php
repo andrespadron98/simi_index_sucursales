@@ -1,5 +1,6 @@
 <?php
 //INICIO DEL SCRIPT
+include("alt_autoload.php-dist");
 $config = include('config/config.php');
 
 if ($handle = opendir('C:\AceptaService\simi_prod\pdf')) {
