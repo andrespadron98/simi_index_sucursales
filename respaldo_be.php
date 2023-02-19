@@ -49,7 +49,7 @@ if ($handle = opendir($ruta)) {
                     $n_boleta = $n_boleta[0];
                     $n_boleta = str_replace("F", "", $n_boleta);
                     $n_boleta = intval($n_boleta);
-                    echo "$n_boleta\n";
+                    echo "$n_boleta - $ultima_boleta\n";
 
                     //Verificar que el folio de la boleta sea mayor al ultimo folio registrado
                     if($n_boleta > $ultima_boleta){
