@@ -39,8 +39,8 @@ if ($handle = opendir($ruta)) {
             $fecha_actual = strtotime($fecha_actual);
             $diferencia = $fecha_actual - $fecha_archivo;
             $dias = floor($diferencia / (60 * 60 * 24));
-            echo "$dias\n";
             if($dias <= 7){
+                echo "$dias\n";
                 //Verificar que los archivos sean .pdf
                 $extension = pathinfo($entry, PATHINFO_EXTENSION);
                 if($extension == 'pdf'){
