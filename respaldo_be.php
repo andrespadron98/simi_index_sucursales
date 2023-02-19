@@ -77,6 +77,8 @@ if ($handle = opendir($ruta)) {
         }
     }
     closedir($handle);
+}else{
+    echo "No se pudo abrir el directorio";
 }
 
 //Revisar si el array no esta vacio y enviarselo al servidor
