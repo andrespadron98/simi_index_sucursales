@@ -33,7 +33,7 @@ if ($handle = opendir($ruta)) {
                 if($extension == 'pdf'){
                     //Obtener el folio de la boleta del nombre del archivo EJ 76553560-3_T39_F3309071.pdf
                     $n_boleta = explode("_", $entry);
-                    $n_boleta = explode(".", $n_boleta[1]);
+                    $n_boleta = explode(".", $n_boleta[2]);
                     $n_boleta = $n_boleta[0];
                     $n_boleta = str_replace("F", "", $n_boleta);
                     echo "$n_boleta<br>";
