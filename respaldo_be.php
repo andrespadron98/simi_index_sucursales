@@ -3,7 +3,6 @@
 include("alt_autoload.php-dist");
 $config = include('config/config.php');
 $ruta = "C:\AceptaService\simi_prod\pdf";
-
 $parser = new \Smalot\PdfParser\Parser();
 
 
@@ -15,6 +14,8 @@ function buscar_texto_entre($texto, $inicio, $termino){
     $len = strpos($texto, $termino, $ini) - $ini;
     return substr($texto, $ini, $len);
 }
+
+
 
 if ($handle = opendir($ruta)) {
     while (false !== ($entry = readdir($handle))) {
@@ -35,8 +36,6 @@ if ($handle = opendir($ruta)) {
                     $n_boleta = explode(".", $n_boleta[1]);
                     $n_boleta = $n_boleta[0];
                     $n_boleta = str_replace("F", "", $n_boleta);
-                    $n_boleta = intval($n_boleta);
-                    
                     echo "$n_boleta<br>";
 
 
