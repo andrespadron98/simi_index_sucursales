@@ -45,7 +45,7 @@ if ($handle = opendir($ruta)) {
 
 //Revisar si el array no esta vacio y enviarselo al servidor
 if(!empty($array)){
-    $enlace = mysqli_connect($config['host'], $config['user'], $config['password'], $config['database']);
+    $enlace = mysqli_connect($config['host'], $config['user'], $config['clave'], $config['bbdd']);
     if (!$enlace) {
         echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
         echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
