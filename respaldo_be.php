@@ -39,6 +39,7 @@ if ($handle = opendir($ruta)) {
             $fecha_actual = strtotime($fecha_actual);
             $diferencia = $fecha_actual - $fecha_archivo;
             $dias = floor($diferencia / (60 * 60 * 24));
+            echo "$dias\n";
             if($dias <= 7){
                 //Verificar que los archivos sean .pdf
                 $extension = pathinfo($entry, PATHINFO_EXTENSION);
@@ -52,7 +53,6 @@ if ($handle = opendir($ruta)) {
 
                     //Verificar que el folio de la boleta sea mayor al ultimo folio registrado
                     if($n_boleta > $ultima_boleta){
-                        echo "$n_boleta - $ultima_boleta\n";
                         //Actualizar el archivo ultima_be.txt con el nuevo folio de la boleta
                         $archivo = fopen("ultima_be.txt", "w");
                         fwrite($archivo, $n_boleta);
