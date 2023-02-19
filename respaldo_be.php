@@ -4,13 +4,14 @@ include("alt_autoload.php-dist");
 $config = include('config/config.php');
 $ruta = "C:\AceptaService\simi_prod\pdf";
 $parser = new \Smalot\PdfParser\Parser();
+$ultBoletaArchivo = "C:\\xampp\htdocs\ultima_be.txt";
 
 ini_set('max_execution_time', '0');
 ini_set('memory_limit', '-1');
 
 //Revisar si existe y Leer la ultima boleta del archivo ultima_be.txt
-if(file_exists('ultima_be.txt')){
-    $archivo = fopen("ultima_be.txt", "r");
+if(file_exists($ultBoletaArchivo)){
+    $archivo = fopen($ultBoletaArchivo, "r");
     $ultima_boleta = fgets($archivo);
     fclose($archivo);
 }else{
@@ -54,7 +55,7 @@ if ($handle = opendir($ruta)) {
                     //Verificar que el folio de la boleta sea mayor al ultimo folio registrado
                     if($n_boleta > $ultima_boleta){
                         //Actualizar el archivo ultima_be.txt con el nuevo folio de la boleta
-                        $archivo = fopen("ultima_be.txt", "w");
+                        $archivo = fopen($ultBoletaArchivo, "w");
                         fwrite($archivo, $n_boleta);
                         fclose($archivo);
                         // echo "$n_boleta<br>";
