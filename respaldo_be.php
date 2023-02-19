@@ -5,6 +5,16 @@ $config = include('config/config.php');
 $ruta = "C:\AceptaService\simi_prod\pdf";
 $parser = new \Smalot\PdfParser\Parser();
 
+//Revisar si existe y Leer la ultima boleta del archivo ultima_be.txt
+if(file_exists('ultima_be.txt')){
+    $archivo = fopen("ultima_be.txt", "r");
+    $ultima_boleta = fgets($archivo);
+    fclose($archivo);
+}else{
+    $ultima_boleta = 0;
+}
+
+
 
 function buscar_texto_entre($texto, $inicio, $termino){
     $texto = ' ' . $texto;
@@ -37,19 +47,26 @@ if ($handle = opendir($ruta)) {
                     $n_boleta = $n_boleta[0];
                     $n_boleta = str_replace("F", "", $n_boleta);
                     $n_boleta = intval($n_boleta);
-                    echo "$n_boleta<br>";
 
+                    //Verificar que el folio de la boleta sea mayor al ultimo folio registrado
+                    if($n_boleta > $ultima_boleta){
+                        //Actualizar el archivo ultima_be.txt con el nuevo folio de la boleta
+                        $archivo = fopen("ultima_be.txt", "w");
+                        fwrite($archivo, $n_boleta);
+                        fclose($archivo);
+                        // echo "$n_boleta<br>";
 
-                //     $pdf = $parser->parseFile($ruta.'\\'.$entry);
-                //     $text = $pdf->getText();
-        
-                //     $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
-                //     $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
-                //     // echo "$numero_remision - $n_boleta<br>";
-                //     $array[] = array(
-                //         'numero_remision' => $numero_remision,
-                //         'n_boleta' => $n_boleta
-                //     );
+                        $pdf = $parser->parseFile($ruta.'\\'.$entry);
+                        $text = $pdf->getText();
+            
+                        $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
+                        $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
+                        // echo "$numero_remision - $n_boleta<br>";
+                        $array[] = array(
+                            'numero_remision' => $numero_remision,
+                            'n_boleta' => $n_boleta
+                        );
+                    }
                 }
             }
         }
