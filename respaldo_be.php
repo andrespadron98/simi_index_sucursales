@@ -5,10 +5,8 @@ $config = include('config/config.php');
 $ruta = "C:\AceptaService\simi_prod\pdf";
 $parser = new \Smalot\PdfParser\Parser();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 ini_set('max_execution_time', '0');
-error_reporting(E_ALL);
+ini_set('memory_limit', '-1');
 
 //Revisar si existe y Leer la ultima boleta del archivo ultima_be.txt
 if(file_exists('ultima_be.txt')){
@@ -16,6 +14,7 @@ if(file_exists('ultima_be.txt')){
     $ultima_boleta = fgets($archivo);
     fclose($archivo);
 }else{
+    echo "No se pudo obtener la ultima boleta\n";
     $ultima_boleta = 0;
 }
 
