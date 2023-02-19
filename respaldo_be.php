@@ -33,7 +33,7 @@ function buscar_texto_entre($texto, $inicio, $termino){
 if ($handle = opendir($ruta)) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
-            echo "$entry<br>";
+            // echo "$entry<br>";
             //Verificar que los archivos no tengan mas de 15 días de antiguedad
             $fecha_archivo = date("Y-m-d", filemtime($ruta.'\\'.$entry));
             $fecha_actual = date("Y-m-d");
