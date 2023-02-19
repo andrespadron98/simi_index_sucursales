@@ -30,6 +30,7 @@ function buscar_texto_entre($texto, $inicio, $termino){
     return substr($texto, $ini, $len);
 }
 
+echo "TEST";
 
 
 if ($handle = opendir($ruta)) {
