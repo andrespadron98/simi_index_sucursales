@@ -40,10 +40,10 @@ if ($handle = opendir($ruta)) {
             $diferencia = $fecha_actual - $fecha_archivo;
             $dias = floor($diferencia / (60 * 60 * 24));
             if($dias <= 7){
-                echo "$dias\n";
                 //Verificar que los archivos sean .pdf
                 $extension = pathinfo($entry, PATHINFO_EXTENSION);
                 if($extension == 'pdf'){
+                    echo "$entry\n";
                     //Obtener el folio de la boleta del nombre del archivo EJ 76553560-3_T39_F3309071.pdf
                     $n_boleta = explode("_", $entry);
                     $n_boleta = explode(".", $n_boleta[2]);
