@@ -12,9 +12,9 @@ if ($handle = opendir($ruta)) {
             $pdf = $parser->parseFile($ruta.'\\'.$entry);
             $text = $pdf->getText();
 
-            $numero_remision = $this->buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
-            $n_boleta = $this->buscar_texto_entre($text, "Nro. Boleta:", "Hora");
-            $n_caja = $this->buscar_texto_entre($text, "Nro. Caja:", "Fecha");
+            $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
+            $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
+            $n_caja = buscar_texto_entre($text, "Nro. Caja:", "Fecha");
 
             echo "$numero_remision - $n_boleta - $n_caja<br>";
         }
