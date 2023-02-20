@@ -2,9 +2,9 @@
 //TAREAS 
 
 //cd C:\xampp\htdocs && git clone https://github.com/andrespadron98/simi_index_sucursales.git . && mkdir config && type nul > config/config.php
-//schtasks /create /tn "ActualizarBESimiData" /tr "C:\xampp\php\php-win.exe C:\xampp\htdocs\respaldo_be.php" /sc minute /mo 5
-//schtasks /create /tn "ActualizarScriptSimi" /tr "C:\xampp\htdocs\pull.sh" /sc minute /mo 1
 //git config --global --add safe.directory C:/xampp/htdocs
+//schtasks /create /tn "ActualizarScriptSimi" /tr "C:\xampp\htdocs\pull.sh" /sc minute /mo 1
+//schtasks /create /tn "ActualizarBESimiData" /tr "C:\xampp\php\php-win.exe C:\xampp\htdocs\respaldo_be.php" /sc minute /mo 5
 
 //INICIO DEL SCRIPT
 include("alt_autoload.php-dist");
