@@ -52,19 +52,19 @@ if ($handle = opendir($ruta)) {
                 $extension = pathinfo($entry, PATHINFO_EXTENSION);
                 if($extension == 'pdf'){
                     //Obtener el folio de la boleta del nombre del archivo EJ 76553560-3_T39_F3309071.pdf
-                    $n_boleta = explode("_", $entry);
-                    $n_boleta = explode(".", $n_boleta[2]);
-                    $n_boleta = $n_boleta[0];
-                    $n_boleta = str_replace("F", "", $n_boleta);
-                    $n_boleta = intval($n_boleta);
-                    echo "$n_boleta - $ultima_boleta\n";
+                    // $n_boleta = explode("_", $entry);
+                    // $n_boleta = explode(".", $n_boleta[2]);
+                    // $n_boleta = $n_boleta[0];
+                    // $n_boleta = str_replace("F", "", $n_boleta);
+                    // $n_boleta = intval($n_boleta);
+                    // echo "$n_boleta - $ultima_boleta\n";
 
                     //Verificar que el folio de la boleta sea mayor al ultimo folio registrado
-                    if($n_boleta > $ultima_boleta){
+                    // if($n_boleta > $ultima_boleta){
                         //Actualizar el archivo ultima_be.txt con el nuevo folio de la boleta
-                        $archivo = fopen($ultBoletaArchivo, "w");
-                        fwrite($archivo, $n_boleta);
-                        fclose($archivo);
+                        // $archivo = fopen($ultBoletaArchivo, "w");
+                        // fwrite($archivo, $n_boleta);
+                        // fclose($archivo);
                         // echo "$n_boleta<br>";
 
                         $pdf = $parser->parseFile($ruta.'\\'.$entry);
@@ -77,7 +77,7 @@ if ($handle = opendir($ruta)) {
                             'numero_remision' => $numero_remision,
                             'n_boleta' => $n_boleta
                         );
-                    }
+                    // }
                 }
             }
         }
