@@ -612,7 +612,6 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 
 
 //RESPALDO PRODUCTO_CODIGOBARRA
-
 $query = mysqli_query($enlace, "SELECT COUNT(*) AS total FROM Producto_CodigoBarra");
 $total_codigos_black   = mysqli_fetch_array($query)['total'];
 
@@ -634,6 +633,71 @@ if($total_codigos_spos != $total_codigos_black){
 }
 //FIN DE RESPALDO PRODUCTO_CODIGOBARRA
 
+//RESPALDO PRODUCTO_NIVEL1
+$query = mysqli_query($enlace, "SELECT COUNT(*) AS total FROM Producto_Nivel1");
+$total_codigos_black   = mysqli_fetch_array($query)['total'];
+
+$sql = "SELECT COUNT(*) AS total FROM Producto_Nivel1";
+$stmt = sqlsrv_query( $conn, $sql );
+while ($row = sqlsrv_fetch_object( $stmt)) {
+    $total_codigos_spos = $row->total;
+}
+if($total_codigos_spos != $total_codigos_black){
+    mysqli_query($enlace, "DELETE FROM Producto_Nivel1");
+
+    $sql = "SELECT * FROM Producto_Nivel1";
+    $stmt = sqlsrv_query( $conn, $sql );
+    while ($row = sqlsrv_fetch_object( $stmt)) {
+        $sql = "INSERT INTO `Producto_Nivel1`(`Id_Nivel1`, `Nombre`, `EstatusRegistro`) VALUES ('$row->Id_Nivel1', '$row->Nombre', '$row->EstatusRegistro')";
+        mysqli_query($enlace, $sql);
+    }
+    
+}
+//FIN DE RESPALDO PRODUCTO_NIVEL1
+
+//RESPALDO PRODUCTO_NIVEL2
+$query = mysqli_query($enlace, "SELECT COUNT(*) AS total FROM Producto_Nivel2");
+$total_codigos_black   = mysqli_fetch_array($query)['total'];
+
+$sql = "SELECT COUNT(*) AS total FROM Producto_Nivel2";
+$stmt = sqlsrv_query( $conn, $sql );
+while ($row = sqlsrv_fetch_object( $stmt)) {
+    $total_codigos_spos = $row->total;
+}
+if($total_codigos_spos != $total_codigos_black){
+    mysqli_query($enlace, "DELETE FROM Producto_Nivel2");
+
+    $sql = "SELECT * FROM Producto_Nivel2";
+    $stmt = sqlsrv_query( $conn, $sql );
+    while ($row = sqlsrv_fetch_object( $stmt)) {
+        $sql = "INSERT INTO `Producto_Nivel2`(`Id_Nivel1`, `Id_Nivel2`, `Nombre`, `EstatusRegistro`) VALUES ('$row->Id_Nivel1', '$row->Id_Nivel2', '$row->Nombre', '$row->EstatusRegistro')";
+        mysqli_query($enlace, $sql);
+    }
+    
+}
+//FIN DE RESPALDO PRODUCTO_NIVEL2
+
+//RESPALDO PRODUCTO_NIVEL3
+$query = mysqli_query($enlace, "SELECT COUNT(*) AS total FROM Producto_Nivel3");
+$total_codigos_black   = mysqli_fetch_array($query)['total'];
+
+$sql = "SELECT COUNT(*) AS total FROM Producto_Nivel3";
+$stmt = sqlsrv_query( $conn, $sql );
+while ($row = sqlsrv_fetch_object( $stmt)) {
+    $total_codigos_spos = $row->total;
+}
+if($total_codigos_spos != $total_codigos_black){
+    mysqli_query($enlace, "DELETE FROM Producto_Nivel3");
+
+    $sql = "SELECT * FROM Producto_Nivel3";
+    $stmt = sqlsrv_query( $conn, $sql );
+    while ($row = sqlsrv_fetch_object( $stmt)) {
+        $sql = "INSERT INTO `Producto_Nivel3`(`Id_Nivel1`, `Id_Nivel2`, `Id_Nivel3`, `Nombre`, `VentaSugestiva`, `EstatusRegistro`) VALUES ('$row->Id_Nivel1', '$row->Id_Nivel2', '$row->Id_Nivel3', '$row->Nombre', '$row->VentaSugestiva', '$row->EstatusRegistro')";
+        mysqli_query($enlace, $sql);
+    }
+    
+}
+//FIN DE RESPALDO PRODUCTO_NIVEL3
 
 //RESPALDO TABLA VENTA_TARJETA
 $query = mysqli_query($enlace, "SELECT Id_Venta FROM Venta_Tarjeta ORDER BY Id_Venta DESC LIMIT 1");
