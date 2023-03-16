@@ -71,7 +71,7 @@ if ($handle = opendir($ruta)) {
             
                         $numero_remision = buscar_texto_entre($text, "REMISION:", "Nro. Caja:");
                         $n_boleta = buscar_texto_entre($text, "Nro. Boleta:", "Hora");
-                        // echo "$numero_remision - $n_boleta<br>";
+                        echo "$numero_remision - $n_boleta<br>";
                         $array[] = array(
                             'numero_remision' => $numero_remision,
                             'n_boleta' => $n_boleta
