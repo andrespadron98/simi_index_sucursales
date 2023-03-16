@@ -191,15 +191,17 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 $query = mysqli_query($enlace, "SELECT Id_Pedido FROM Pedido_Detalle ORDER BY Id_Pedido DESC LIMIT 1");
 $ultimo_surtido    = mysqli_fetch_array($query)['Id_Pedido'];
 
-$query = mysqli_query($enlace, "SELECT COUNT(*) AS total FROM Pedido_Detalle WHERE Id_Pedido = ".$ultimo_surtido);
+$query = mysqli_query($enlace, "SELECT COUNT(*) AS total, SUM(Pedido) as pedido FROM Pedido_Detalle WHERE Id_Pedido = ".$ultimo_surtido);
 $total_ult_surtido   = mysqli_fetch_array($query)['total'];
+$total_productos_pedido   = mysqli_fetch_array($query)['pedido'];
 
-$sql = "SELECT COUNT(*) as total FROM Pedido_Detalle  WHERE Id_Pedido = ".$ultimo_surtido;
+$sql = "SELECT COUNT(*) as total, SUM(Pedido) as pedido FROM Pedido_Detalle  WHERE Id_Pedido = ".$ultimo_surtido;
 $stmt = sqlsrv_query( $conn, $sql );
 while ($row = sqlsrv_fetch_object( $stmt)) {
     $total_ult_surtido_simi = $row->total;
+    $total_productos_pedido_simi = $row->pedido;
 }
-if($total_ult_surtido != $total_ult_surtido_simi){
+if($total_ult_surtido != $total_ult_surtido_simi || $total_productos_pedido_simi != $total_productos_pedido){
     mysqli_query($enlace, "DELETE FROM Pedido_Detalle WHERE Id_Pedido = ".$ultimo_surtido);
     $ultimo_surtido = $ultimo_surtido-1;
 }
