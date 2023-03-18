@@ -494,6 +494,18 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 
 
 //RESPALDO INVENTARIO
+$query = mysqli_query($enlace, "SELECT COUNT(*) as total FROM Inventario");
+$total    = mysqli_fetch_array($query)['total'];
+
+$sql = "SELECT COUNT(*) as total FROM Inventario";
+$stmt = sqlsrv_query( $conn, $sql );
+while ($row = sqlsrv_fetch_object( $stmt)) {
+    $total_inventario = $row->total;
+}
+
+if($total != $total_inventario){
+    mysqli_query($enlace, "DELETE FROM Inventario");
+}
 
 $query = mysqli_query($enlace, "SELECT Fecha_Modificacion FROM Inventario ORDER BY Fecha_Modificacion DESC LIMIT 1");
 $ultima_modificacion    = mysqli_fetch_array($query)['Fecha_Modificacion'];
