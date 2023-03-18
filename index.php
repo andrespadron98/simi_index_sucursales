@@ -592,6 +592,19 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 //FIN DE RESPALDO INVENTARIO_SURTIDO_DETALLE
 
 //RESPALDO PRODUCTO
+$query = mysqli_query($enlace, "SELECT COUNT(*) as total FROM Producto");
+$total    = mysqli_fetch_array($query)['total'];
+
+$sql = "SELECT COUNT(*) as total FROM Producto";
+$stmt = sqlsrv_query( $conn, $sql );
+while ($row = sqlsrv_fetch_object( $stmt)) {
+    $total_productos = $row->total;
+}
+
+if($total != $total_productos){
+    mysqli_query($enlace, "DELETE FROM Producto");
+}
+
 $sql = "SELECT * FROM Producto";
 $stmt = sqlsrv_query( $conn, $sql );
 
