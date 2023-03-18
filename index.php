@@ -494,17 +494,19 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 
 
 //RESPALDO INVENTARIO
-$query = mysqli_query($enlace, "SELECT COUNT(*) as total FROM Inventario");
-$total    = mysqli_fetch_array($query)['total'];
+if(date("H") >= 3 && date("H") <= 5){
+    $query = mysqli_query($enlace, "SELECT COUNT(*) as total FROM Inventario");
+    $total    = mysqli_fetch_array($query)['total'];
 
-$sql = "SELECT COUNT(*) as total FROM Inventario";
-$stmt = sqlsrv_query( $conn, $sql );
-while ($row = sqlsrv_fetch_object( $stmt)) {
-    $total_inventario = $row->total;
-}
+    $sql = "SELECT COUNT(*) as total FROM Inventario";
+    $stmt = sqlsrv_query( $conn, $sql );
+    while ($row = sqlsrv_fetch_object( $stmt)) {
+        $total_inventario = $row->total;
+    }
 
-if($total != $total_inventario){
-    mysqli_query($enlace, "DELETE FROM Inventario");
+    if($total != $total_inventario){
+        mysqli_query($enlace, "DELETE FROM Inventario");
+    }
 }
 
 $query = mysqli_query($enlace, "SELECT Fecha_Modificacion FROM Inventario ORDER BY Fecha_Modificacion DESC LIMIT 1");
@@ -604,17 +606,19 @@ while ($row = sqlsrv_fetch_object( $stmt)) {
 //FIN DE RESPALDO INVENTARIO_SURTIDO_DETALLE
 
 //RESPALDO PRODUCTO
-$query = mysqli_query($enlace, "SELECT COUNT(*) as total FROM Producto");
-$total    = mysqli_fetch_array($query)['total'];
-
-$sql = "SELECT COUNT(*) as total FROM Producto";
-$stmt = sqlsrv_query( $conn, $sql );
-while ($row = sqlsrv_fetch_object( $stmt)) {
-    $total_productos = $row->total;
-}
-
-if($total != $total_productos){
-    mysqli_query($enlace, "DELETE FROM Producto");
+if(date("H") >= 3 && date("H") <= 5){
+    $query = mysqli_query($enlace, "SELECT COUNT(*) as total FROM Producto");
+    $total    = mysqli_fetch_array($query)['total'];
+    
+    $sql = "SELECT COUNT(*) as total FROM Producto";
+    $stmt = sqlsrv_query( $conn, $sql );
+    while ($row = sqlsrv_fetch_object( $stmt)) {
+        $total_productos = $row->total;
+    }
+    
+    if($total != $total_productos){
+        mysqli_query($enlace, "DELETE FROM Producto");
+    }
 }
 
 $sql = "SELECT * FROM Producto";
