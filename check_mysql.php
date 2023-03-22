@@ -8,7 +8,7 @@ $config = include('config/config.php');
 
 $enlace = mysqli_connect($config['host'], $config['user'], $config['clave'], $config['bbdd']);
 if (!$enlace) {
-    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+    echo "Error: No se pudo conectar a MySQL ".$config['host']." ." . PHP_EOL;
     echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
     echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
     exit;
